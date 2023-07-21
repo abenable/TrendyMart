@@ -1,0 +1,7 @@
+{% extends 'cart/base.html' %}{% block content %}
+<div class="form-group">
+  <form method="post">
+    {% csrf_token %}{{form.as_p}}<button type="submit">Register</button>
+  </form>
+</div>
+{% endblock %} {% block title %}Register{% endblock %}

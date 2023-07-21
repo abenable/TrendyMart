@@ -1,0 +1,11 @@
+h2 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.profile-pic {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
