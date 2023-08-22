@@ -1,0 +1,15 @@
+h2 {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+
+.profile-pic {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}
+
+body {
+  background-color: rgb(45, 189, 45);
+}
