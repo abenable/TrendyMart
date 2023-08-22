@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from social_django.utils import psa
 from .forms import RegisterForm, LoginForm, ProfileImgForm
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -11,6 +12,7 @@ from .models import User, Profile
 
 @login_required
 def index(request):
+    print(request)
     try:
         profile = Profile.objects.get(user=request.user)
         return render(request, 'cart/index.html', {'profile': profile})

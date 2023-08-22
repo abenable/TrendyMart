@@ -1,8 +1,8 @@
 {% extends 'cart/base.html' %}{% block content %} {% comment %} {% endcomment %}
 {% if request.user.is_authenticated %}
-<h2>Welcome, {{ request.user.last_name }}<br>
+<h2>Welcome, {{ request.user }}<br>
     {% if profile %}
-        <img class='profile-pic' src="{{profile.image.url}}" alt="" >
+        <img class='profile-pic' src="{{profile.image.url}}" alt="{{ request.user.image }}" >
     {% endif %}<br>
 </h2>
 <br><a href='{% url 'uploaddp' %}'>Upload dp</a><br><a href='{% url 'logout' %}'>log out</a>

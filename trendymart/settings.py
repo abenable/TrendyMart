@@ -39,11 +39,7 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'allauth',
-    'allauth.account',
-    'allauth.socialaccount',
-    'allauth.socialaccount.providers.github',
-    'allauth.socialaccount.providers.google',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -54,18 +50,16 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = "trendymart.urls"
 
 AUTHENTICATION_BACKENDS = [
-
-    # Needed to login by username in Django admin, regardless of `allauth`
     'django.contrib.auth.backends.ModelBackend',
-
-    # `allauth` specific authentication methods, such as login by e-mail
-    'allauth.account.auth_backends.AuthenticationBackend',
-
+    'social_core.backends.twitter.TwitterOAuth',  # twitter <----
+    'social_core.backends.facebook.FacebookOAuth2',  # facebook <----
+    'social_core.backends.google.GoogleOAuth2',
 ]
 
 TEMPLATES = [
@@ -79,6 +73,8 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -153,27 +149,10 @@ LOGIN_URL = '/login/'
 
 SITE_ID = 1
 
-ACCOUNT_USER_MODEL_USERNAME_FIELD = None
-ACCOUNT_EMAIL_REQUIRED = True
-ACCOUNT_USERNAME_REQUIRED = False
-ACCOUNT_AUTHENTICATION_METHOD = 'email'
-
-# Provider specific settings
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        # For each OAuth based provider, either add a ``SocialApp``
-        # (``socialaccount`` app) containing the required client
-        # credentials, or list them here:
-        'APP': {
-            'client_id': '76522922915-fut6jb0hed121fngegkjfbtc6qjhn9ld.apps.googleusercontent.com',
-            'secret': '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',
-            'key': ''
-        }
-    }
-}
-
-
-# settings.py
-
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email', 'https://www.googleapis.com/auth/userinfo.profile']
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '76522922915-utu5ht7331fh96mlstjc6vpb1k928qco.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
